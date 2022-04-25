@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react"
 import './App.css';
+import AddUser from "./components/AddUser";
 import User from "./components/User";
 
 function App() {
@@ -50,9 +51,13 @@ function App() {
   return (
     <div className="App">
       <h1 className="title">React Crud Using Jsonplaceholder</h1>
-      {user.map((user) => (
-        <User key={user.id} {...user} />
-      ))}
+      <AddUser onAdd={onAdd} />
+      <hr />
+      <div>
+         {user.map((user) => (
+            <User key={user.id} {...user} />
+         ))}
+      </div>
     </div>
   );
 }
