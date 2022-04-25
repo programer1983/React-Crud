@@ -45,6 +45,23 @@ function App() {
     })
   }
 
+
+  const onDelete = async (id) => {
+    await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+      method: "DELETE",
+    })
+    .then((res) => {
+      if(res.status !== 200){
+        return
+      }else{
+        setUser(user.filter((u) => u.id !== id))
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   console.log(user)
 
 
@@ -55,7 +72,7 @@ function App() {
       <hr />
       <div>
          {user.map((user) => (
-            <User key={user.id} {...user} />
+            <User key={user.id} {...user} onDelete={onDelete} />
          ))}
       </div>
     </div>
