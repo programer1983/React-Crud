@@ -18,6 +18,32 @@ function App() {
     })
   }
 
+  const onAdd = async (name, email) => {
+    await fetch("https://jsonplaceholder.typicode.com/users", {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        email: email,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+    .then((res) => {
+      if(res.status !== 201){
+        return
+      }else{
+        return res.json()
+      }
+    })
+    .then((data) => {
+      setUser((user) => [...user, data])
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   console.log(user)
 
 
