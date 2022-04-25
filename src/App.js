@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react"
 import './App.css';
+import User from "./components/User";
 
 function App() {
   const [user, setUser] = useState([])
@@ -22,7 +23,10 @@ function App() {
 
   return (
     <div className="App">
-      <h3>React Crud Using Jsonplaceholder</h3>
+      <h1 className="title">React Crud Using Jsonplaceholder</h1>
+      {user.map((user) => (
+        <User key={user.id} {...user} />
+      ))}
     </div>
   );
 }
